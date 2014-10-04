@@ -16,6 +16,11 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
+        <activity android:name="test.aktor.me.test.ILoveYou" />
+        <activity
+            android:name=".LetMeJump"
+            android:label="@string/title_activity_le_me_jump" >
+        </activity>
     </application>
 
 </manifest>

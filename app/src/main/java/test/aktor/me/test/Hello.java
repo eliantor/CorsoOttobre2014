@@ -1,5 +1,7 @@
 package test.aktor.me.test;
 
+import android.app.Activity;
+import android.content.Intent;
 import android.support.v7.app.ActionBarActivity;
 import android.os.Bundle;
 import android.text.Editable;
@@ -12,7 +14,7 @@ import android.widget.EditText;
 import android.widget.TextView;
 
 
-public class Hello extends ActionBarActivity {
+public class Hello extends ActionBarActivity implements View.OnClickListener {
 
     public static final String LOG_TAG ="HELLO";
 
@@ -37,18 +39,38 @@ public class Hello extends ActionBarActivity {
 
 //        Button button = (Button)findViewById(R.id.btn_update);
         View button = findViewById(R.id.btn_update);
+        findViewById(R.id.btn_next).setOnClickListener(this);
 
-        button.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                updateText();
-            }
-        });
+//        findViewById(R.id.btn_next).setOnClickListener(new View.OnClickListener() {
+//            @Override
+//            public void onClick(View v) {
+//                ILoveYou.start(Hello.this,mCurrentText); //fixme <------
+//            }
+//        });
+        final String x = "ciao";
+//        button.setOnClickListener(new View.OnClickListener() {
+//            @Override
+//            public void onClick(View v) {
+//                updateText();
+//                //x = "ciao2";
+//            }
+//        });
 
+        button.setOnClickListener(this);
         mInput = (EditText)findViewById(R.id.in_text);
         mOutput = (TextView)findViewById(R.id.tv_output);
-
         mOutput.setText(mCurrentText);
+    }
+
+
+    @Override
+    public void onClick(View v) {
+        int id = v.getId();
+        if (id == R.id.btn_update) {
+            updateText();
+        } else {
+            start(this,mCurrentText);
+        }
     }
 
     @Override
@@ -63,6 +85,7 @@ public class Hello extends ActionBarActivity {
         mCurrentText = string;
         mOutput.setText(mCurrentText);
     }
+
 
 //
 //    @Override
@@ -86,4 +109,10 @@ public class Hello extends ActionBarActivity {
 //
 //        return super.onOptionsItemSelected(item);
 //    }
+
+    public static void start(Activity activity,String msg){
+        Intent message = new Intent(activity,ILoveYou.class);
+        message.putExtra(ILoveYou.MESSAGE, msg);
+        activity.startActivity(message);
+    }
 }
