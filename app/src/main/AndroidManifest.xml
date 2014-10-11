@@ -3,18 +3,24 @@
     package="test.aktor.me.test" >
 
     <application
+        android:name=".MyApplication"
         android:allowBackup="true"
         android:icon="@drawable/ic_launcher"
         android:label="@string/app_name"
         android:theme="@style/AppTheme" >
-        <activity
-            android:name="test.aktor.me.test.Hello"
-            android:label="@string/title_activity_hello" >
+
+        <activity android:name=".lists.StudentListActivity">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
+        </activity>
+
+        <activity
+            android:name="test.aktor.me.test.Hello"
+            android:label="@string/title_activity_hello" >
+
         </activity>
         <activity android:name="test.aktor.me.test.ILoveYou" />
         <activity
