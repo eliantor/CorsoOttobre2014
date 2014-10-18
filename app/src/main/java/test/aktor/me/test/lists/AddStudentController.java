@@ -13,7 +13,10 @@ class AddStudentController {
     private final View.OnClickListener listener = new View.OnClickListener() {
         @Override
         public void onClick(View v) {
-            callAddStudent();
+            switch (v.getId()){
+                case R.id.in_student_add:
+                    callAddStudent();
+            }
         }
     };
 

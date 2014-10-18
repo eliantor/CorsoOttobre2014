@@ -1,13 +1,26 @@
 <?xml version="1.0" encoding="utf-8"?>
 
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
     android:orientation="vertical" android:layout_width="match_parent"
     android:layout_height="match_parent">
-    <include
-        layout="@layout/include_add_student"/>
-    <ListView
+    <!--<include
+        layout="@layout/include_add_student"/>-->
+    <fragment
+        android:name="test.aktor.me.test.lists.AddStudentFragment"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        tools:layout="@layout/fragment_add_student" />
+
+    <fragment
+        android:id="@+id/ListStudentFragment"
+        android:name="test.aktor.me.test.lists.ListStudentFragmnent"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        tools:layout="@layout/fragment_list_students" />
+   <!-- <ListView
         android:id="@+id/lv_students"
         android:layout_width="match_parent"
         android:layout_height="match_parent">
-    </ListView>
+    </ListView>-->
 </LinearLayout>

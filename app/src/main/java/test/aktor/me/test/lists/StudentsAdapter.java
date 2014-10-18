@@ -46,6 +46,14 @@ final class StudentsAdapter extends BaseAdapter {
     private static class ItemCtrl{
         private TextView name;
         private TextView born;
+
+//        ItemCtrl(View view){
+//
+//        }
+//
+//        public void bind(AndroidStudent student){
+//            mostra lo studente nella view
+//        }
     }
 
     @Override
@@ -55,9 +63,10 @@ final class StudentsAdapter extends BaseAdapter {
         ItemCtrl ctrl;
         if (convertView == null){
             view = mInflater.inflate(R.layout.item_student, adapterView, false);
+            ctrl = new ItemCtrl();
             TextView name =(TextView) view.findViewById(R.id.tv_student_name);
             TextView born =(TextView)view.findViewById(R.id.tv_student_born);
-            ctrl = new ItemCtrl();
+
             ctrl.name = name;
             ctrl.born = born;
             view.setTag(ctrl);
@@ -66,6 +75,7 @@ final class StudentsAdapter extends BaseAdapter {
             ctrl =(ItemCtrl)view.getTag();
         }
 
+        //ctrl.bind(student);
         ctrl.name.setText(student.name);
         ctrl.born.setText(student.born);
 
