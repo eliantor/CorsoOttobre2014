@@ -1,5 +1,8 @@
 <manifest xmlns:android="http://schemas.android.com/apk/res/android" package="me.aktor.simpleapp">
 
+    <uses-permission android:name="android.permission.INTERNET"/>
+    <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE"/>
+    <uses-permission android:name="android.permission.BATTERY_STATS"/>
     <application android:allowBackup="true" android:label="@string/app_name"
         android:icon="@drawable/ic_launcher" android:theme="@style/AppTheme">
 
@@ -15,6 +18,19 @@
             android:name=".ui.data.NoteTakingProvider">
 
         </provider>
+        <service android:name=".NetService"
+            android:exported="false">
+
+        </service>
+        <receiver android:name=".NetBroadcast">
+            <intent-filter>
+                <action android:name="android.intent.action.CONNECTION_STATE_CHANGED"/>
+            </intent-filter>
+            <intent-filter>
+                <action android:name="android.intent.action.BATTERY_CHANGED"/>
+            </intent-filter>
+
+        </receiver>
     </application>
 
 </manifest>

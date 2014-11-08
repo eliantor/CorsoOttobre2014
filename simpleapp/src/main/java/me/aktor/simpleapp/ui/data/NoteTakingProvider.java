@@ -12,6 +12,8 @@ import android.net.Uri;
 import android.text.TextUtils;
 import android.util.Log;
 
+import me.aktor.simpleapp.NetService;
+
 /**
  * Created by Andrea Tortorella on 10/25/14.
  */
@@ -91,6 +93,8 @@ public class NoteTakingProvider extends ContentProvider {
                 Uri newNoteUri =
                         ContentUris.withAppendedId(uri, id);
                 Log.d("PROVIDER","Inserted: "+newNoteUri);
+                //->
+                NetService.start(getContext());
                 getContext().getContentResolver().notifyChange(uri,null);
                 return newNoteUri;
             default:
@@ -111,6 +115,16 @@ public class NoteTakingProvider extends ContentProvider {
 
     @Override
     public int update(Uri uri, ContentValues values, String selection, String[] selectionArgs) {
+        final int op = MATCHER.match(uri);
+        if (op == ONE_NOTES){
+            SQLiteDatabase db = mDb.getWritableDatabase();
+            int update = db.update(Contract.NOTE_TABLE, values, "_id = " + ContentUris.parseId(uri), null);
+
+            if (update!= 0){
+                getContext().getContentResolver().notifyChange(uri,null);
+            }
+            return update;
+        }
         throw new UnsupportedOperationException("Cannot delete");
     }
 

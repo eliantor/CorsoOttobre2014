@@ -40,7 +40,9 @@ class NoteTakingDatabase extends SQLiteOpenHelper {
                 + BaseColumns._ID + " INTEGER PRIMARY KEY AUTOINCREMENT,"
                 + NoteColumns.TITLE_COL + " TEXT NOT NULL,"
                 + NoteColumns.DATE_COL + " TEXT,"
-                + NoteColumns.TEXT_COL+ " TEXT NOT NULL DEFAULT ''"
+                + NoteColumns.TEXT_COL+ " TEXT NOT NULL DEFAULT '',"
+                + SyncColumns.SYNC_STATUS+ " INTEGER NOT NULL DEFAULT "
+                    +SyncStatuses.NOT_SYNCED
                 + ")";
 
     private static final String DROP_NOTE_TABLE =
